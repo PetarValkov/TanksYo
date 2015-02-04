@@ -33,24 +33,26 @@ BasicGame.Boot.prototype = {
     },
 
     preload: function () {
-
-        //  Here we load the assets required for our preloader (in this case a background and a loading bar)
-		this.load.image('tiles', 'tiles/tiles.png');
 		
-		this.load.tilemap('level', 'tiles/level1.json', null, Phaser.Tilemap.TILED_JSON);
+        //  Here we load the assets required for our preloader (in this case a background and a loading bar)
+		this.load.image('tiles', 'tilemaps/tiles.png');
+		
+		this.load.tilemap('level', 'tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
     },
 
     create: function () {
 
         //  By this point the preloader assets have loaded to the cache, we've set the game settings
         //  So now let's start the real preloader going
-
-        this.game.time.events.add(Phaser.Timer.SECOND * 2, this.gotoMainMenu, this);
+		
+		this.gotoMainMenu();
+		
+        //this.game.time.events.add(Phaser.Timer.SECOND * 2, this.gotoMainMenu, this);
 
     },
 	
 	gotoMainMenu: function () {
-		this.game.state.start('MainMenu');
+		this.game.state.start('Game');
 	}
 
 };
