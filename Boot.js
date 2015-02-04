@@ -36,7 +36,7 @@ BasicGame.Boot.prototype = {
 		
         //  Here we load the assets required for our preloader (in this case a background and a loading bar)
 		this.load.image('tiles', 'tilemaps/tiles.png');
-		
+		this.load.image('tank', 'Assets/TankSprite.jpg');
 		this.load.tilemap('level', 'tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
     },
 

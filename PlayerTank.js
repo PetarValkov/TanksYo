@@ -1,13 +1,12 @@
-playerTank = function( game, speed, xCoord, yCoord)
+playerTank = function( game, velocity, speed, xCoord, yCoord)
 {
 	Phaser.Sprite.call(this, game, xCoord, yCoord, 'tank');
 	
 	
 	this.speed = speed;
-	game.physics.enable(this);
+	game.physics.arcade.enable(this);
 	this.body.collideWorldBounds =true;
 	this.body.tilePadding.set(32);
-	this.physics.enable;
 	
 	game.add.existing(this);
 		game.camera.follow(this, Phaser.Camera.FOLLOW_PLATFORMER);
@@ -28,35 +27,28 @@ playerTank.prototype.setSpeed = function (addSpeed)
 
 playerTank.prototype.moveTank = function(cursors)
 {
+	this.body.velocity.y = 0;
+	this.body.velocity.x = 0;
 	if (cursors.left.isDown)
 	 {
 		//  Move to the left 	
-	 //velocity *= -1;
 	 this.body.velocity.x = -this.speed;
-	 // this.anchor.setTo(.5,.5);
-	 // this.scale.x*=-1;
 	 }
 	  else if (cursors.right.isDown)
 	 {
 	 //  Move to the right
 	 this.body.velocity.x = this.speed;
-	 // this.anchor.setTo(.5,.5);
-	 // this.scale.x*=-1;
 	 }
-	 	  else if (cursors.right.isDown)
+	 	  else if (cursors.up.isDown)
 	 {
 	 //  Move up
-	 this.body.velocity.y = this.speed;
-	 // this.anchor.setTo(.5,.5);
-	 // this.scale.y*=-1;
-	 }	  else if (cursors.right.isDown)
+	 this.body.velocity.y = -this.speed;
+	 }	  else if (cursors.down.isDown)
 	 {
 	 //  Move down
 	 this.body.velocity.y = this.speed;
-	 // this.anchor.setTo(.5,.5);
-	 // this.scale.y*=-1;
 	 }
-
+	
 
 
 }

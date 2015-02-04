@@ -38,12 +38,14 @@ BasicGame.Game.prototype = {
 		
 		this.nonbreakable = this.map.createLayer("Tile Layer 1");
 		this.physics.startSystem(Phaser.Physics.ARCADE);
-		
+		this.player = new playerTank(this.game, 550, 240, this.world.height-64);
 		this.cursors = this.input.keyboard.createCursorKeys();
+		this.physics.arcade.enable(this.nonbreakable);
+		this.nonbreakable.enableBody = true;
     },
 
     update: function () {
-        
+        this.player.moveTank(this.cursors);
     },
 
     render: function () {
