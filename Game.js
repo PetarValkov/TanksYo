@@ -24,6 +24,7 @@ BasicGame.Game = function (game) {
 
 };
 
+var bullets;
 
 BasicGame.Game.prototype = {
 
@@ -44,11 +45,30 @@ BasicGame.Game.prototype = {
 		this.cursors = this.input.keyboard.createCursorKeys();
 		this.physics.arcade.enable(this.nonbreakable);
 		this.map.setCollisionBetween(1,200);
+		
+		bullets = this.add.group();
+		bullets.enableBody = true;
+		bullets.physicsBodyType = Phaser.Physics.ARCADE;
+
+		bullets.createMultiple(50, 'bullet');
+		bullets.setAll('checkWorldBounds', true);
+		bullets.setAll('outOfBoundsKill', true);
+		
+		 this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
+
+		// add keyboard controls
+			var flapKey = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+			flapKey.onDown.add(this.player.fire, this.player);
     },
 
     update: function () {
 	this.physics.arcade.collide(this.player, this.nonbreakable);
         this.player.moveTank(this.cursors);
+		
+		// if (this.flapKey.)
+		// {
+			// this.player.fire("gosho", bullets);
+		// }
     },
 
     render: function () {
