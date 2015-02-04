@@ -13,34 +13,6 @@ BasicGame.MainMenu.prototype = {
 		//	We've already preloaded our assets, so let's kick right into the Main Menu itself.
 		//	Here all we're doing is playing some music and adding a picture and button
 		//	Naturally I expect you to do something significantly better :)
-
-        this.stage.backgroundColor = "#3f3f3f";
-        this.map = this.add.tilemap("level");
-        this.map.addTilesetImage("tiles");
-        this.layer1 = this.map.createLayer("nonburning");
-        this.layer2 = this.map.createLayer("burning");
-
-        this.layer1.alpha = 0.0;
-        this.layer2.alpha = 0.0;
-
-        var sprite = this.add.sprite(0, 0, 'menuScreen');
-        sprite.fixedToCamera = true;
-
-        this.anykey = this.add.sprite(100, 240, 'menuAnyKey');
-        this.anykey.alpha = 0;
-        this.anykey.fixedToCamera = true;
-        this.alphadirection = 1;
-
-
-        this.world.setBounds(0, 0, 640, 7030);
-        this.camera.setPosition(0, 7000);
-
-        var that = this;
-        originaCallback = this.game.input.keyboard.onDownCallback;
-        this.game.input.keyboard.onDownCallback = function (e){
-            that.game.input.keyboard.onDownCallback = originaCallback;
-            that.startGame();
-        }
     },
 
 
