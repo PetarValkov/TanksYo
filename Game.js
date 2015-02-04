@@ -37,14 +37,17 @@ BasicGame.Game.prototype = {
         this.world.setBounds(0, 0, 640, 480);
 		
 		this.nonbreakable = this.map.createLayer("Tile Layer 1");
+		this.walls = this.game.add.group();
+		
 		this.physics.startSystem(Phaser.Physics.ARCADE);
 		this.player = new playerTank(this.game, 550, 240, this.world.height-64);
 		this.cursors = this.input.keyboard.createCursorKeys();
 		this.physics.arcade.enable(this.nonbreakable);
-		this.nonbreakable.enableBody = true;
+		this.map.setCollisionBetween(1,200);
     },
 
     update: function () {
+	this.physics.arcade.collide(this.player, this.nonbreakable);
         this.player.moveTank(this.cursors);
     },
 
