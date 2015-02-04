@@ -30,7 +30,14 @@ BasicGame.Game.prototype = {
 
     create: function () {
         
-
+		this.stage.backgroundColor = "#3f3f3f";
+        this.map = this.add.tilemap("level");
+        this.map.addTilesetImage("tiles");
+        this.world.setBounds(0, 0, 640, 480);
+		
+		this.physics.startSystem(Phaser.Physics.ARCADE);
+		
+		this.cursors = this.input.keyboard.createCursorKeys();
     },
 
     update: function () {
